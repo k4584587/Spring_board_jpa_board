@@ -1,0 +1,209 @@
+<html lang="kr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      layout:decorate="~{/layout/layout}">
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-8 box_card card-1 p-3">
+            <center class="p-5">
+                상단광고
+            </center>
+            <!-- { 최신글 시작 -->
+            <div class="row">
+                <!-- { 공지사항 시작 -->
+                <div class="col-auto">
+                    <div class="card new_board" style="width: 18rem;">
+                        <div class="card-header">
+                                <span class="board-title">
+                                    <a href="#">공지사항</a>
+                                </span>
+                            <span class="more-item">
+                                    <a href="#">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </a>
+                                </span>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item board-item">
+                                    <span class="subject">
+                                        <a href="#">
+                                            제목제목제목제목제목 (1)
+                                        </a>
+                                    </span>
+                                <span style="float: right;">11:00</span>
+                            </li>
+                            <li class="list-group-item board-item">
+                                    <span class="subject">
+                                        <a href="#">
+                                            제목제목제목제목제목 (1)
+                                        </a>
+                                    </span>
+                                <span style="float: right;">11:00</span>
+                            </li>
+                            <li class="list-group-item board-item">
+                                    <span class="subject">
+                                        <a href="#">
+                                            제목제목제목제목제목 (1)
+                                        </a>
+                                    </span>
+                                <span style="float: right;">11:00</span>
+                            </li>
+                            <li class="list-group-item board-item">
+                                    <span class="subject">
+                                        <a href="#">
+                                            제목제목제목제목제목 (1)
+                                        </a>
+                                    </span>
+                                <span style="float: right;">11:00</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 공지사항 끝 } -->
+                <!-- { 공지사항 시작 -->
+                <div class="col-auto">
+                    <div class="card new_board" style="width: 18rem;">
+                        <div class="card-header">
+                                <span class="board-title">
+                                    <a href="#">공지사항</a>
+                                </span>
+                            <span class="more-item">
+                                    <a href="#">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </a>
+                                </span>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item board-item">
+                                    <span class="subject">
+                                        <a href="#">
+                                            제목제목제목제목제목 (1)
+                                        </a>
+                                    </span>
+                                <span style="float: right;">11:00</span>
+                            </li>
+                            <li class="list-group-item board-item">
+                                    <span class="subject">
+                                        <a href="#">
+                                            제목제목제목제목제목 (1)
+                                        </a>
+                                    </span>
+                                <span style="float: right;">11:00</span>
+                            </li>
+                            <li class="list-group-item board-item">
+                                    <span class="subject">
+                                        <a href="#">
+                                            제목제목제목제목제목 (1)
+                                        </a>
+                                    </span>
+                                <span style="float: right;">11:00</span>
+                            </li>
+                            <li class="list-group-item board-item">
+                                    <span class="subject">
+                                        <a href="#">
+                                            제목제목제목제목제목 (1)
+                                        </a>
+                                    </span>
+                                <span style="float: right;">11:00</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 공지사항 끝 } -->
+            </div>
+        </div>
+        <!-- { 사이드바 시작 -->
+        <div class="col box_card card-1 p-3 side-bar">
+            <!-- { 로그인시작 -->
+            <div class="card border-info login mb-3" style="max-width: 18rem;">
+                <!-- { 로그인 안될때 -->
+                <div class="card-header"><i class="fas fa-user"></i> 로그인</div>
+                <div class="card-body text-info">
+                    <center>
+                        <form th:action="@{/}" th:method="post">
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <i class="fas fa-unlock"></i>
+                                        </span>
+                                </div>
+                                <input th:type="text" th:name="username" class="form-control" placeholder="아이디"
+                                       aria-label="Username" aria-describedby="basic-addon1" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <i class="fas fa-key"></i>
+                                        </span>
+                                </div>
+                                <input th:type="password" th:name="password" class="form-control" placeholder="비밀번호"
+                                       aria-label="Username" aria-describedby="basic-addon1" required>
+                            </div>
+                            <div class="login-btn">
+                                <input type="checkbox"> 로그인 상태 유지
+                                <br>
+                                <br>
+                                <span>
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fas fa-sign-in-alt"></i> 로그인</button>
+                                    </span>
+                                <span>
+                                        <a class="btn btn-info">
+                                            <i class="fas fa-user-plus"></i> 회원가입</a>
+                                    </span>
+                            </div>
+                        </form>
+                    </center>
+                </div>
+                <!-- 로그인 안될때 끝 } -->
+
+                <!-- { 로그인 로그인후 -->
+                <!-- <div class="card-header"><i class="fas fa-user"></i> 회원정보</div>
+                <div class="card-body text-info">
+                    <center>
+                        <img class="profile" src="//via.placeholder.com/120x120">
+                        <div class="p-3">님 환영합니다.</div>
+                        <div style="margin-bottom: 10px;">포인트 0p</div>
+                        <div class="login-btn">
+                            <button class="btn btn-danger" type="submit">
+                                <i class="fas fa-sign-out-alt"></i> 로그아웃</button>
+                        </div>
+                    </center>
+
+                </div> -->
+                <!-- 로그인 후 로그인후 끝 } -->
+            </div>
+            <!-- 로그인 끝 } -->
+            <!-- { 카테고리 시작 -->
+            <div class="card sidebar-category">
+                <ul class="list-group list-group-flush">
+                    <a href="#">
+                        <li class="list-group-item">공지사항</li>
+                    </a>
+                    <a href="#">
+                        <li class="list-group-item">자유게시판</li>
+                    </a>
+                    <a href="#">
+                        <li class="list-group-item">유머게시판</li>
+                    </a>
+                    <a href="#" style="border: none;">
+                        <li class="list-group-item">게임게시판</li>
+                    </a>
+                </ul>
+            </div>
+            <!-- 카테고리 끝 } -->
+            <!-- { 사이드바 광고 시작 -->
+            <div class="sidebar-ad">
+                <img src="//via.placeholder.com/284">
+            </div>
+            <!-- 사이드바 광고 끝 } -->
+        </div>
+        <!-- 사이드바 끝 } -->
+    </div>
+
+</div>
+
+</html>

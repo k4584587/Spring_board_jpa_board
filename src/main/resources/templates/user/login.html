@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:if="${param.error != null}">
+    <h2>Login Error</h2>
+</th:block>
+<th:block th:unless="${param.error != null}">
+    <script th:inline="javascript">
+        alert("로그인이 필요한 서비스입니다.");
+        location.href = /*[[@{/}]]*/'';
+    </script>
+</th:block>
+
+
+</body>
+</html>

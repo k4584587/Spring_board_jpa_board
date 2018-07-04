@@ -1,0 +1,120 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: 'LotteMartHappy';
+  font-style: inherit;
+  font-weight: 400;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyMedium.woff') format('woff');
+}
+
+/* { 초기화 */
+body {
+  background-color: #f2f4f7;
+}
+/* 초기화 } */
+
+
+
+/* { 상단 네비바 */
+.needon_nav {
+  background-color: rgba(255, 150, 0, 0.75)!important;
+  box-shadow: 0 .25rem .75rem #a5a5a5;
+}
+
+.needon_nav .nav-link {
+  color: white!important;
+}
+/* 상단 네비바 } */
+
+.box_card {
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  margin: 1rem;
+  position: relative;
+}
+
+.card-1 {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+
+/* 메인광고 */
+.main-ad {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* 사이드바 광고 */
+.sidebar-ad {
+  margin-top: 15px;
+}
+
+.sidebar-category a {
+  color: black;
+  text-decoration-line: none;
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.sidebar-category a li:hover {
+  color: white;
+  background-color: #cacaca;
+}
+
+
+
+/* ========================== */
+/*          위 젯             */
+/* ========================== */
+
+/* { 최신글 위젯 */
+
+.new_board {
+  width: 349px!important;
+  margin-bottom: 20px;
+}
+
+.new_board a {
+  color: black;
+}
+
+.new_board .board-title a {
+  text-decoration-line: none;
+}
+
+.new_board .more-item {
+  float: right;
+}
+
+.new_board .board-item {
+  font-size: 13px;
+}
+
+/* 최신글 위젯 } */
+
+/* { 로그인 위젯 */
+.login .nick {
+  font-size: 13px;
+}
+
+.login-btn a {
+  color: white!important;
+}
+
+/* 로그인 위젯 } */
+
+/* { 풋더 */
+footer {
+  background-color: white;
+  margin-top: 60px;
+  border-top: 1px solid #e6e6e6;
+  color: #f2f2f2;
+  font-size: 13px;
+}
+
+footer, .container:after {
+  color: #666;
+  height:   130px;
+}
+/* 풋더 } */
