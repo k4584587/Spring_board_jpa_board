@@ -126,7 +126,7 @@
                             <form th:action="@{/}" th:method="post">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">
+                                        <span class="input-group-text">
                                             <i class="fas fa-unlock"></i>
                                         </span>
                                     </div>
@@ -135,23 +135,23 @@
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">
+                                        <span class="input-group-text">
                                             <i class="fas fa-key"></i>
                                         </span>
                                     </div>
                                     <input th:type="password" th:name="password" class="form-control" placeholder="비밀번호"
                                            aria-label="Username" aria-describedby="basic-addon1" required>
                                 </div>
+                                <span th:if="${param.error != null}" style="font-size: 13px;color: red;">아이디 또는 비밀번호를 다시 확인하세요.</span>
                                 <div class="login-btn">
                                     <input type="checkbox" id="remember-me" th:name="remember-me"> 로그인 상태 유지
-                                    <br>
-                                    <br>
+                                    <br><br>
                                     <span>
                                         <button class="btn btn-primary" type="submit">
                                             <i class="fas fa-sign-in-alt"></i> 로그인</button>
                                     </span>
                                     <span>
-                                        <a class="btn btn-info">
+                                        <a th:href="@{/user/join}" class="btn btn-info">
                                             <i class="fas fa-user-plus"></i> 회원가입</a>
                                     </span>
                                 </div>

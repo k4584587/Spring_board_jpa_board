@@ -28,9 +28,14 @@ public class Member {
 
     private String nb_name;
 
+    private String nb_nick;
+
     private Long nb_point;
 
+    @Lob
     private Blob nb_profile;
+
+    private String nb_user_info;
 
     @CreationTimestamp
     private Date nb_regdate = new Date();

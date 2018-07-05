@@ -1,0 +1,47 @@
+<html lang="kr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      layout:decorate="~{/layout/layout}">
+
+<div layout:fragment="content">
+
+    <style>
+
+        .join-form .form-control {
+            margin-bottom: 20px;
+        }
+
+        .join-form .text-label {
+            padding-left: 0px;
+        }
+
+    </style>
+
+    <div class="card join-form" style="margin: 20px; padding: 30px;">
+        <h3 align="center" style="margin-bottom: 20px;">회원가입</h3>
+        <form th:action="@{/user/join}" th:method="post" enctype="multipart/form-data">
+            <div class="join-form mx-auto" style="width: 30%;">
+                <p>아이디</p>
+                <input th:type="text" th:name="nb_username" th:class="form-control" required>
+                <p>이름</p>
+                <input th:type="text" th:name="nb_name" th:class="form-control" required>
+                <p>닉네임</p>
+                <input th:type="text" th:name="nb_nick" th:class="form-control" required>
+                <p>패스워드</p>
+                <input th:type="password" th:name="nb_password" th:class="form-control" required>
+                <p>패스워드 확인</p>
+                <input th:type="password" th:name="nb_password_re" th:class="form-control" required>
+                <!--<p>프로필 사진</p>-->
+                <!--<input th:type="file" th:name="nb_profile" th:class="form-control">-->
+                <p>자기소개</p>
+                <textarea th:name="nb_user_info" th:class="form-control"></textarea>
+            </div>
+            <p align="center">
+                <input th:type="checkbox" name="roles[2].nb_roleName" value="ADMIN"> 관리자&nbsp;
+                <input th:type="checkbox" name="roles[0].nb_roleName" value="BASIC"> 사용자
+            </p>
+            <input th:type="submit" class="btn btn-block btn-info" th:value="회원가입">
+        </form>
+    </div>
+
+</div>

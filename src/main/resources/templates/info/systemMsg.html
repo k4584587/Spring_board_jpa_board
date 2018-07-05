@@ -5,9 +5,9 @@
     <title>안내창</title>
 </head>
 <body>
-<script th:inline="javascript">
-    alert("접근할 권한이 없습니다.");
-    location.href = /*[[@{/}]]*/'';
-</script>
+    <script th:inline="javascript">
+        alert([[${msg}]]);
+        location.href = /*[[@{${url}}]]*/'';
+    </script>
 </body>
 </html>

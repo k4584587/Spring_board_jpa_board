@@ -53,6 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().loginPage("/user/login.info")
                 .and()
+                .formLogin().failureUrl("/?error")
+                .and()
                 .userDetailsService(needonUserService);
 
 //        http
