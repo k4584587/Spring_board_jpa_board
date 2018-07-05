@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +27,10 @@ public class Member {
     private String nb_password;
 
     private String nb_name;
+
+    private Long nb_point;
+
+    private Blob nb_profile;
 
     @CreationTimestamp
     private Date nb_regdate = new Date();

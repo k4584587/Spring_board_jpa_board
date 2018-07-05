@@ -21,6 +21,6 @@ public class NeedonUserService implements UserDetailsService {
         log.info("NeedonUserService ......");
         return memberService.findById(s)
                 .filter(member -> member != null)
-                .map(member -> new NeedonSecurityUser(member)).get();
+                .map(NeedonSecurityUser::new).get();
     }
 }

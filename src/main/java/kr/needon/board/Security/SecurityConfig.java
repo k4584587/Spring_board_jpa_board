@@ -51,9 +51,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().accessDeniedPage("/info/accessDenied")
                 .and()
-                .formLogin().loginPage("/user/login.info");
-
-        //http.userDetailsService(needonUserService);
+                .formLogin().loginPage("/user/login.info")
+                .and()
+                .userDetailsService(needonUserService);
 
 //        http
 //                .rememberMe()

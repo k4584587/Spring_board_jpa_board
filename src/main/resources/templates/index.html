@@ -167,17 +167,23 @@
                 <div class="card-body text-info">
                     <center>
                         <img class="profile" src="//via.placeholder.com/120x120">
+                        <!--[[${#authentication.principal.member}]]-->
+                        <th:block th:with="member=${#authentication.principal.member}">
                         <div class="p-3">
-
-                            [[${#authentication.name}]]님 환영합니다.
+                            [[${member.nb_name}]]님 환영합니다.
                         </div>
-                        <div style="margin-bottom: 10px;">포인트 0p</div>
+                        <div style="margin-bottom: 10px;">포인트 [[${member.nb_point}]]p</div>
                         <div class="login-btn">
+
                             <form th:action="@{/user/login.info}" th:method="post">
                             <button class="btn btn-danger" th:type="submit">
                                 <i class="fas fa-sign-out-alt"></i> 로그아웃</button>
+                                <span sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <a th:href="@{/admin}" class="btn btn-info">관리자</a>
+                                </span><br>
                             </form>
                         </div>
+                        </th:block>
                     </center>
                 </div>
                 </div>

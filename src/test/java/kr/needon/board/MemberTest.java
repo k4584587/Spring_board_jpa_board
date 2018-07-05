@@ -55,6 +55,22 @@ public class MemberTest {
     }
 
     @Test
+    public void InsertMemberPoint() {
+
+        List<String> ids = new ArrayList<>();
+
+        for(int i = 0; i <= 100; i++) {
+            ids.add("user" + i);
+        }
+
+        memberService.findAllById(ids).forEach(member -> {
+            member.setNb_point(100L);
+            memberService.save(member);
+        });
+
+    }
+
+    @Test
     public void MemberFind() { //user85 회원 검색
 
         Optional<Member> result = memberService.findById("user85");
