@@ -17,8 +17,9 @@ public class HomeController {
 
     @Secured(value = {"ROLE_ADMIN"})
     @GetMapping("/admin")
-    public String Admin() {
+    public String Admin(Model model) {
 
+        model.addAttribute("title", "관리자");
         return "admin";
     }
 

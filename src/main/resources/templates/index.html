@@ -119,61 +119,68 @@
             <!-- { 로그인시작 -->
             <div class="card border-info login mb-3" style="max-width: 18rem;">
                 <!-- { 로그인 안될때 -->
+                <div sec:authorize="isAnonymous()">
                 <div class="card-header"><i class="fas fa-user"></i> 로그인</div>
                 <div class="card-body text-info">
-                    <center>
-                        <form th:action="@{/}" th:method="post">
-
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
+                        <center>
+                            <form th:action="@{/}" th:method="post">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">
                                             <i class="fas fa-unlock"></i>
                                         </span>
+                                    </div>
+                                    <input th:type="text" th:name="username" class="form-control" placeholder="아이디"
+                                           aria-label="Username" aria-describedby="basic-addon1" required>
                                 </div>
-                                <input th:type="text" th:name="username" class="form-control" placeholder="아이디"
-                                       aria-label="Username" aria-describedby="basic-addon1" required>
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">
                                             <i class="fas fa-key"></i>
                                         </span>
+                                    </div>
+                                    <input th:type="password" th:name="password" class="form-control" placeholder="비밀번호"
+                                           aria-label="Username" aria-describedby="basic-addon1" required>
                                 </div>
-                                <input th:type="password" th:name="password" class="form-control" placeholder="비밀번호"
-                                       aria-label="Username" aria-describedby="basic-addon1" required>
-                            </div>
-                            <div class="login-btn">
-                                <input type="checkbox"> 로그인 상태 유지
-                                <br>
-                                <br>
-                                <span>
+                                <div class="login-btn">
+                                    <input type="checkbox" id="remember-me" th:name="remember-me"> 로그인 상태 유지
+                                    <br>
+                                    <br>
+                                    <span>
                                         <button class="btn btn-primary" type="submit">
                                             <i class="fas fa-sign-in-alt"></i> 로그인</button>
                                     </span>
-                                <span>
+                                    <span>
                                         <a class="btn btn-info">
                                             <i class="fas fa-user-plus"></i> 회원가입</a>
                                     </span>
-                            </div>
-                        </form>
-                    </center>
+                                </div>
+                            </form>
+                        </center>
+                </div>
                 </div>
                 <!-- 로그인 안될때 끝 } -->
 
                 <!-- { 로그인 로그인후 -->
-                <!-- <div class="card-header"><i class="fas fa-user"></i> 회원정보</div>
+                <div sec:authorize="isAuthenticated()">
+                <div class="card-header"><i class="fas fa-user"></i> 회원정보</div>
                 <div class="card-body text-info">
                     <center>
                         <img class="profile" src="//via.placeholder.com/120x120">
-                        <div class="p-3">님 환영합니다.</div>
+                        <div class="p-3">
+
+                            [[${#authentication.name}]]님 환영합니다.
+                        </div>
                         <div style="margin-bottom: 10px;">포인트 0p</div>
                         <div class="login-btn">
-                            <button class="btn btn-danger" type="submit">
+                            <form th:action="@{/user/logout}" th:method="post">
+                            <button class="btn btn-danger" th:type="submit">
                                 <i class="fas fa-sign-out-alt"></i> 로그아웃</button>
+                            </form>
                         </div>
                     </center>
-
-                </div> -->
+                </div>
+                </div>
                 <!-- 로그인 후 로그인후 끝 } -->
             </div>
             <!-- 로그인 끝 } -->

@@ -8,6 +8,12 @@
 <th:block th:if="${param.error != null}">
     <h2>Login Error</h2>
 </th:block>
+<th:block th:if="${param.logout != null}">
+    <script th:inline="javascript">
+        alert("로그아웃 되었습니다.");
+        location.href = /*[[@{/}]]*/'';
+    </script>
+</th:block>
 <th:block th:unless="${param.error != null}">
     <script th:inline="javascript">
         alert("로그인이 필요한 서비스입니다.");
