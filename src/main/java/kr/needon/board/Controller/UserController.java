@@ -49,7 +49,8 @@ public class UserController {
             try {
 
                 member.setNb_password(passwordEncoder.encode(nb_password_re));
-                member.setNb_point(100L);
+                member.setNb_point(100L); //회원가입시 기본포인트
+                member.setNb_exp(0L); //회원가입시 경험치 0으로 초기화
                 memberService.save(member);
 
                 model.addAttribute("msg", "회원가입이 되었습니다.");
