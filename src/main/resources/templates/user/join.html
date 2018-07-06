@@ -33,7 +33,7 @@
                 <input th:type="password" th:name="nb_password_re" th:class="form-control" required>
                 <!--<p>프로필 사진</p>-->
                 <!--<input th:type="file" th:name="nb_profile" th:class="form-control">-->
-                <p>자기소개</p>
+                <span>자기소개</span>
                 <textarea th:name="nb_user_info" th:class="form-control"></textarea>
             </div>
             <th:block th:if="${#authentication.name.equals('anonymousUser')}">

@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 
@@ -24,6 +21,12 @@ public class UserController {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @GetMapping("/@{nb_username}")
+    public String UserPage(@PathVariable("nb_username") String nb_username) {
+
+        return "/user/info";
+    }
 
     @GetMapping("/login.info")
     public String Login() {
@@ -40,6 +43,8 @@ public class UserController {
     @Transactional
     @PostMapping("/join")
     public String JoinPost(Model model, @ModelAttribute("member") Member member, String nb_password_re) {
+
+        model.addAttribute("title","니드온 회원가입");
 
         log.info("JoinPost =====> " + member.toString());
         log.info("Password Re =====> " + nb_password_re);

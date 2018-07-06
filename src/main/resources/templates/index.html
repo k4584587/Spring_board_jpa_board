@@ -170,9 +170,9 @@
                             <!--[[${#authentication.principal.member}]]-->
                             <th:block th:with="member=${#authentication.principal.member}">
                                 <div class="p-3">
-                                    [[${member.nb_name}]]님 환영합니다.
+                                    <a th:href="@{|/user/@${member.nb_username}|}">[[${member.nb_name}]]</a>님 환영합니다.
                                 </div>
-                                <div style="margin-bottom: 10px;">포인트 [[${member.nb_point}]]p</div>
+                                <div style=" margin-bottom: 10px;">포인트 [[${member.nb_point}]]p</div>
                                 <div class="login-btn">
 
                                     <form th:action="@{/user/login.info}" th:method="post">
