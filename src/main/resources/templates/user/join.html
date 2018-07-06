@@ -36,10 +36,12 @@
                 <p>자기소개</p>
                 <textarea th:name="nb_user_info" th:class="form-control"></textarea>
             </div>
-            <p align="center">
-                <input type="checkbox" name="roles[0].nb_roleName" value="ROLE_BASIC">사용자
+            <p align="center" sec:authorize="hasRole('ROLE_ADMIN')">
+                <input type="checkbox" name="roles[0].nb_roleName" value="ROLE_BASIC" > 손님
                 &nbsp;
-                <input type="checkbox" name="roles[2].nb_roleName" value="ROLE_ADMIN">관리자
+                <input type="checkbox"name="roles[0].nb_roleName" value="ROLE_MANAGER"> 매니저
+                &nbsp;
+                <input type="checkbox" name="roles[0].nb_roleName" value="ROLE_ADMIN"> 관리자
             </p>
             <input th:type="submit" class="btn btn-block btn-info" th:value="회원가입">
         </form>

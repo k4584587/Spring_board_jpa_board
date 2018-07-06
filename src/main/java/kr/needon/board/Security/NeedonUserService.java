@@ -1,5 +1,6 @@
 package kr.needon.board.Security;
 
+import kr.needon.board.Model.Member;
 import kr.needon.board.Service.MemberService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,6 @@ public class NeedonUserService implements UserDetailsService {
         log.info("NeedonUserService ......");
         return memberService.findById(s)
                 .filter(member -> member != null)
-                .map(NeedonSecurityUser::new).get();
+                .map(member -> new NeedonSecurityUser(member)).get();
     }
 }

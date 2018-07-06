@@ -32,6 +32,8 @@ public class Member {
 
     private Long nb_point;
 
+    private Long nb_exp;
+
     @Lob
     private Blob nb_profile;
 
