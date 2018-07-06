@@ -36,6 +36,9 @@
                 <p>자기소개</p>
                 <textarea th:name="nb_user_info" th:class="form-control"></textarea>
             </div>
+            <th:block th:if="${#authentication.name.equals('anonymousUser')}">
+                <input type="hidden" name="roles[0].nb_roleName" value="ROLE_BASIC">
+            </th:block>
             <p align="center" sec:authorize="hasRole('ROLE_ADMIN')">
                 <input type="checkbox" name="roles[0].nb_roleName" value="ROLE_BASIC" > 손님
                 &nbsp;
