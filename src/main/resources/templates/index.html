@@ -120,8 +120,8 @@
             <div class="card border-info login mb-3" style="max-width: 18rem;">
                 <!-- { 로그인 안될때 -->
                 <div sec:authorize="isAnonymous()">
-                <div class="card-header"><i class="fas fa-user"></i> 로그인</div>
-                <div class="card-body text-info">
+                    <div class="card-header"><i class="fas fa-user"></i> 로그인</div>
+                    <div class="card-body text-info">
                         <center>
                             <form th:action="@{/}" th:method="post">
                                 <div class="input-group mb-3">
@@ -157,35 +157,36 @@
                                 </div>
                             </form>
                         </center>
-                </div>
+                    </div>
                 </div>
                 <!-- 로그인 안될때 끝 } -->
 
                 <!-- { 로그인 로그인후 -->
                 <div sec:authorize="isAuthenticated()">
-                <div class="card-header"><i class="fas fa-user"></i> 회원정보</div>
-                <div class="card-body text-info">
-                    <center>
-                        <img class="profile" src="//via.placeholder.com/120x120">
-                        <!--[[${#authentication.principal.member}]]-->
-                        <th:block th:with="member=${#authentication.principal.member}">
-                        <div class="p-3">
-                            [[${member.nb_name}]]님 환영합니다.
-                        </div>
-                        <div style="margin-bottom: 10px;">포인트 [[${member.nb_point}]]p</div>
-                        <div class="login-btn">
+                    <div class="card-header"><i class="fas fa-user"></i> 회원정보</div>
+                    <div class="card-body text-info">
+                        <center>
+                            <img class="profile" src="//via.placeholder.com/120x120">
+                            <!--[[${#authentication.principal.member}]]-->
+                            <th:block th:with="member=${#authentication.principal.member}">
+                                <div class="p-3">
+                                    [[${member.nb_name}]]님 환영합니다.
+                                </div>
+                                <div style="margin-bottom: 10px;">포인트 [[${member.nb_point}]]p</div>
+                                <div class="login-btn">
 
-                            <form th:action="@{/user/login.info}" th:method="post">
-                            <button class="btn btn-danger" th:type="submit">
-                                <i class="fas fa-sign-out-alt"></i> 로그아웃</button>
-                                <span sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <form th:action="@{/user/login.info}" th:method="post">
+                                        <button class="btn btn-danger" th:type="submit">
+                                            <i class="fas fa-sign-out-alt"></i> 로그아웃
+                                        </button>
+                                        <span sec:authorize="hasRole('ROLE_ADMIN')">
                                     <a th:href="@{/admin}" class="btn btn-info">관리자</a>
                                 </span><br>
-                            </form>
-                        </div>
-                        </th:block>
-                    </center>
-                </div>
+                                    </form>
+                                </div>
+                            </th:block>
+                        </center>
+                    </div>
                 </div>
                 <!-- 로그인 후 로그인후 끝 } -->
             </div>

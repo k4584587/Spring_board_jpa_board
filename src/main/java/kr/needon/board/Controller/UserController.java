@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.transaction.Transactional;
+
 @Log
 @Controller
 @RequestMapping("/user")
@@ -35,6 +37,7 @@ public class UserController {
         return "/user/join";
     }
 
+    @Transactional
     @PostMapping("/join")
     public String JoinPost(Model model, @ModelAttribute("member") Member member, String nb_password_re) {
 
@@ -63,6 +66,7 @@ public class UserController {
             model.addAttribute("msg", "패스워드 확인이 일치하지 않습니다.");
             model.addAttribute("url", "/user/join");
         }
+
 
         return "/info/systemMsg";
     }

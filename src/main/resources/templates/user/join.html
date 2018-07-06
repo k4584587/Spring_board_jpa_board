@@ -37,8 +37,9 @@
                 <textarea th:name="nb_user_info" th:class="form-control"></textarea>
             </div>
             <p align="center">
-                <input th:type="checkbox" name="roles[2].nb_roleName" value="ADMIN"> 관리자&nbsp;
-                <input th:type="checkbox" name="roles[0].nb_roleName" value="BASIC"> 사용자
+                <input type="checkbox" name="roles[0].nb_roleName" value="ROLE_BASIC">사용자
+                &nbsp;
+                <input type="checkbox" name="roles[2].nb_roleName" value="ROLE_ADMIN">관리자
             </p>
             <input th:type="submit" class="btn btn-block btn-info" th:value="회원가입">
         </form>

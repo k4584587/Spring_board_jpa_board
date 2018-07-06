@@ -41,11 +41,11 @@ public class MemberTest {
 
             MemberRole role = new MemberRole();
             if(i <= 80) {
-                role.setNb_roleName("BASIC");
+                role.setNb_roleName("ROLE_BASIC");
             } else if (i <= 90) {
-                role.setNb_roleName("MANAGER");
+                role.setNb_roleName("ROLE_MANAGER");
             } else {
-                role.setNb_roleName("ADMIN");
+                role.setNb_roleName("ROLE_ADMIN");
             }
             member.setRoles(Arrays.asList(role));
 

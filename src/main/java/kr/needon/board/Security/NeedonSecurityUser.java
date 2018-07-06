@@ -13,10 +13,7 @@ import java.util.List;
 @Getter
 public class NeedonSecurityUser extends User {
 
-    private static final String ROLE_PREFIX = "ROLE_";
-
     private Member member;
-
 
     public NeedonSecurityUser(Member member) {
 
@@ -29,7 +26,7 @@ public class NeedonSecurityUser extends User {
 
         List<GrantedAuthority> list = new ArrayList<>();
 
-        roles.forEach(role -> list.add(new SimpleGrantedAuthority(ROLE_PREFIX + role.getNb_roleName())));
+        roles.forEach(role -> list.add(new SimpleGrantedAuthority(role.getNb_roleName())));
 
         return list;
     }

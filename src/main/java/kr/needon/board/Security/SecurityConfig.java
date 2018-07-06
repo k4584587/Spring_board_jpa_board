@@ -39,7 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf()
+        http
+                .csrf()
                 .csrfTokenRepository(csrfTokenRepository());
 
         http
@@ -107,8 +108,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery(query1)
-                .authoritiesByUsernameQuery(query2)
-                .rolePrefix("ROLE_");
+                .authoritiesByUsernameQuery(query2);
 
     }
 

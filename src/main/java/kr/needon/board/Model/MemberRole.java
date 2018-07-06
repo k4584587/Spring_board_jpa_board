@@ -1,7 +1,6 @@
 package kr.needon.board.Model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -13,7 +12,9 @@ import java.util.Date;
  */
 @EqualsAndHashCode(of = "nb_no")
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
 @Table(name = "nb_member_roles")
 public class MemberRole {
 
