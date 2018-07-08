@@ -1,0 +1,109 @@
+<html lang="kr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      layout:decorate="~{/layout/layout}">
+
+<div layout:fragment="content">
+
+    <style>
+
+        .join-form .form-control {
+            margin-bottom: 20px;
+        }
+
+        .join-form .text-label {
+            padding-left: 0px;
+        }
+
+    </style>
+
+    <div class="card join-form" style="margin: 20px; padding: 30px;">
+
+        <th:block th:if="${#authentication.principal != 'anonymousUser'}" th:with="member=${user_info}">
+            <h3 align="center" style="margin-bottom: 20px;">정보수정</h3>
+            <form th:action="@{/user/update.submit}" th:method="post" enctype="multipart/form-data">
+                <input type="hidden" name="username" th:value="${member.nb_username}" />
+                <div class="join-form mx-auto" style="width: 30%;">
+                    <p>아이디</p>
+                    <div class="row">
+                        <div class="col">
+                            <input th:type="text" th:name="nb_username" th:class="form-control" th:value="${member.nb_username}" readonly>
+                        </div>
+                    </div>
+                    <!--<input th:type="text" th:name="nb_username" th:class="form-control" required>-->
+                    <p>이름</p>
+                    <input th:type="text" th:name="nb_name" th:class="form-control" th:value="${member.nb_name}" required>
+                    <p>닉네임</p>
+                    <div class="row">
+                        <div class="col-8">
+                            <input th:type="text" th:name="nb_nick" th:class="form-control" th:value="${member.nb_nick}" required>
+                        </div>
+                        <div class="col-auto" style="padding: 0px;">
+                            <a href="#" class="btn btn-info">중복확인</a>
+                        </div>
+                    </div>
+                    <p>패스워드</p>
+                    <input th:type="password" th:name="nb_password" th:class="form-control" required>
+                    <p>패스워드 확인</p>
+                    <input th:type="password" th:name="nb_password_re" th:class="form-control" required>
+                    <p style="color: red;" th:utext="${error}">error</p>
+                    <p>프로필 사진</p>
+                    <input th:type="file" th:name="nb_profile_" th:class="form-control">
+                    <span>자기소개</span>
+                    <textarea th:name="nb_user_info" th:class="form-control" th:utext="${member.nb_user_info}"></textarea>
+                </div>
+                <input type="hidden" name="roles[0].nb_roleName" th:value="${member.roles[0].nb_roleName}" />
+                <input th:type="submit" class="btn btn-block btn-info" th:value="정보수정">
+            </form>
+        </th:block>
+        <th:block th:unless="${#authentication.principal != 'anonymousUser'}">
+            <h3 align="center" style="margin-bottom: 20px;">회원가입</h3>
+            <form th:action="@{/user/join}" th:method="post" enctype="multipart/form-data">
+                <div class="join-form mx-auto" style="width: 30%;">
+                    <p>아이디</p>
+                    <div class="row">
+                        <div class="col-8">
+                            <input th:type="text" th:name="nb_username" th:class="form-control" required>
+                        </div>
+                        <div class="col-auto" style="padding: 0px;">
+                            <a href="#" class="btn btn-info">중복확인</a>
+                        </div>
+                    </div>
+                    <!--<input th:type="text" th:name="nb_username" th:class="form-control" required>-->
+                    <p>이름</p>
+                    <input th:type="text" th:name="nb_name" th:class="form-control" required>
+                    <p>닉네임</p>
+                    <div class="row">
+                        <div class="col-8">
+                            <input th:type="text" th:name="nb_nick" th:class="form-control" required>
+                        </div>
+                        <div class="col-auto" style="padding: 0px;">
+                            <a href="#" class="btn btn-info">중복확인</a>
+                        </div>
+                    </div>
+                    <p>패스워드</p>
+                    <input th:type="password" th:name="nb_password" th:class="form-control" required>
+                    <p>패스워드 확인</p>
+                    <input th:type="password" th:name="nb_password_re" th:class="form-control" required>
+                    <p style="color: red;" th:utext="${error}">error</p>
+                    <p>프로필 사진</p>
+                    <input th:type="file" th:name="nb_profile_" th:class="form-control">
+                    <span>자기소개</span>
+                    <textarea th:name="nb_user_info" th:class="form-control"></textarea>
+                </div>
+                <th:block th:if="${#authentication.name.equals('anonymousUser')}">
+                    <input type="hidden" name="roles[0].nb_roleName" value="ROLE_BASIC">
+                </th:block>
+                <p align="center" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <input type="checkbox" name="roles[0].nb_roleName" value="ROLE_BASIC"> 손님
+                    &nbsp;
+                    <input type="checkbox" name="roles[0].nb_roleName" value="ROLE_MANAGER"> 매니저
+                    &nbsp;
+                    <input type="checkbox" name="roles[0].nb_roleName" value="ROLE_ADMIN"> 관리자
+                </p>
+                <input th:type="submit" class="btn btn-block btn-info" th:value="회원가입">
+            </form>
+        </th:block>
+    </div>
+
+</div>

@@ -7,6 +7,10 @@
 
     <style>
 
+        .container {
+            max-width: 1350px !important;
+        }
+
         .join-form .form-control {
             margin-bottom: 20px;
         }
@@ -16,5 +20,65 @@
         }
 
     </style>
-r
+
+
+    <th:block th:with="member=${user_info}">
+        <h3 align="center" style="margin-top: 20px; margin-bottom: 20px;">[[${member.nb_nick}]]님의 프로필</h3>
+        <div class="card join-form" style="margin: 20px; padding: 30px;">
+            <div class="row">
+                <div class="col-auto">
+                    <img src="http://via.placeholder.com/800x500">
+                </div>
+                <div class="col-4">
+                    <center>
+                        <th:block th:if="${user_info.nb_profile == null}">
+                            <img src="//via.placeholder.com/128">
+                        </th:block>
+                        <th:block th:unless="${user_info.nb_profile == null}">
+                            <img width="128" class="profile"
+                                 th:src="@{|/file/img/profile?username=${member.nb_username}|}">
+                        </th:block>
+                    </center>
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col-auto">
+                            닉네임
+                        </div>
+                        <div class="col">
+                            [[${member.nb_nick}]]
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-auto">
+                            포인트
+                        </div>
+                        <div class="col">
+                            [[${member.nb_point}]]
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-auto">
+                            가입일
+                        </div>
+                        <div class="col">
+                            [[${member.nb_regdate}]]
+                        </div>
+                    </div>
+                    <hr>
+                    <div th:if="${#authentication.principal != 'anonymousUser'}"> <!-- 로그인 감지 -->
+                        <th:block th:if="${#authentication.principal.member.nb_username eq member.nb_username}"> <!-- 본인 프로필이면 정보수정 버튼 표시 -->
+                            <center>
+                                <form th:action="@{/user/update}" th:method="post">
+                                    <input type="hidden" name="nb_username" th:value="${member.nb_username}" />
+                                    <button type="submit" th:href="@{/user/update}" class="btn btn-info">정보수정</button>
+                                </form>
+                            </center>
+                        </th:block>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </th:block>
 </div>

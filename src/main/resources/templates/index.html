@@ -166,9 +166,13 @@
                     <div class="card-header"><i class="fas fa-user"></i> 회원정보</div>
                     <div class="card-body text-info">
                         <center>
-                            <img class="profile" src="//via.placeholder.com/120x120">
-                            <!--[[${#authentication.principal.member}]]-->
                             <th:block th:with="member=${#authentication.principal.member}">
+                                <th:block th:if="${#authentication.principal.member.nb_profile == null}">
+                                    <img src="//via.placeholder.com/128">
+                                </th:block>
+                                <th:block th:unless="${#authentication.principal.member.nb_profile == null}">
+                                    <img width="128" class="profile" th:src="@{|/file/img/profile?username=${member.nb_username}|}">
+                                </th:block>
                                 <div class="p-3">
                                     <a th:href="@{|/user/@${member.nb_username}|}">[[${member.nb_name}]]</a>님 환영합니다.
                                 </div>

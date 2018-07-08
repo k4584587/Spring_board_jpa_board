@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.sql.Blob;
@@ -35,7 +36,16 @@ public class Member {
     private Long nb_exp;
 
     @Lob
-    private Blob nb_profile;
+    @Column(length=1024000)
+    private byte[] nb_profile;
+
+    @Lob
+    @Column(length=1024000)
+    private byte[] nb_profile_banner;
+
+    @Lob
+    @Column(length=1024000)
+    private byte[] nb_profile_bg;
 
     private String nb_user_info;
 
