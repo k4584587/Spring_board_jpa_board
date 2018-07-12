@@ -11,6 +11,10 @@
 body {
   background-color: #f2f4f7;
 }
+
+.container {
+  max-width: 1150px!important;
+}
 /* 초기화 } */
 
 

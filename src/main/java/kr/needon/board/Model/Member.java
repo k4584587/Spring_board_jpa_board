@@ -3,11 +3,10 @@ package kr.needon.board.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +18,7 @@ import java.util.List;
 @EqualsAndHashCode(of = "nb_username")
 @Data
 @Entity
+@DynamicUpdate
 @Table(name = "nb_member")
 public class Member {
 
@@ -55,9 +55,11 @@ public class Member {
     @UpdateTimestamp
     private LocalDateTime nb_updatedate;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinColumn(name = "member")
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="member", nullable = false, updatable = false)
     private List<MemberRole> roles;
+
+    private String test;
 
 
 }

@@ -8,16 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 @Log
 @Controller
@@ -70,46 +68,17 @@ public class UserController {
 
     @Transactional
     @PostMapping("/update.submit")
-    public String UserUpdatePost(@RequestParam("username") String username, @ModelAttribute("member") Member member, @RequestParam("nb_profile_") MultipartFile nb_profile_, Model model) throws IOException {
+    public String UserUpdatePost(@RequestParam("username") String username, @ModelAttribute("member") Member member, @RequestParam("nb_profile_") MultipartFile nb_profile_, Model model,MemberRole memberRole) throws IOException {
+
+        List<String> ids = new ArrayList<>();
+        Member update = memberService.findById(username).get();
+
+        ids.add(update.getNb_username());
 
 
-        System.out.println("권한 ===> " + member.getRoles());
-
-        System.out.println("파일이름 =====> " + nb_profile_.getOriginalFilename());
-        System.out.println("파일 업로드 상태 ====> " + nb_profile_.isEmpty());
-
-        try {
-
-            Member update = memberService.findById(username).get();
-
-            member.setNb_password(passwordEncoder.encode(member.getNb_password()));
-
-            System.out.println("포인트 ===> " + update.getNb_point());
-
-            //기본정보
-            member.setNb_regdate(update.getNb_regdate()); //가입일
-            member.setNb_point(update.getNb_point()); //포인트
-
-            if(nb_profile_.isEmpty()) {
-                System.out.println("파일상태 ==== > 1");
-
-            } else {
-                member.setNb_profile(nb_profile_.getBytes());
-                System.out.println("파일상태 ==== > 2");
-            }
-
-            memberService.save(member);
-
-            model.addAttribute("msg", "정보수정 되었습니다.");
-            model.addAttribute("url", "/");
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-            model.addAttribute("msg", "정보수정 실패");
-            model.addAttribute("url", "/");
-
-        }
+        memberService.findAllById(ids).forEach(member1 -> {
+            memberService.save(member1);
+        });
 
 
         return "/info/systemMsg";
@@ -139,6 +108,7 @@ public class UserController {
                 member.setNb_password(passwordEncoder.encode(nb_password_re));
                 member.setNb_point(100L); //회원가입시 기본포인트
                 member.setNb_exp(0L); //회원가입시 경험치 0으로 초기화
+
                 memberService.save(member);
 
                 model.addAttribute("msg", "회원가입이 되었습니다.");
@@ -154,6 +124,47 @@ public class UserController {
         } else {
 
             return "redirect:/user/join?error=1";
+
+        }
+
+        return "/info/systemMsg";
+    }
+
+    @PostMapping("update.banner")
+    public String UserBannerUpdate(@ModelAttribute("member") Member member, @RequestParam("nb_profile_banner_") MultipartFile nb_profile_banner_, Model model, BindingResult bindingResult) throws IOException {
+
+        List<String> ids = new ArrayList<>();
+        Member update = memberService.findById(member.getNb_username()).get();
+
+        ids.add(update.getNb_username());
+
+        System.out.println("유저이름 ===> " + member.getNb_username());
+        System.out.println("파일이름 ===> " + nb_profile_banner_.getOriginalFilename());
+
+        if(nb_profile_banner_.isEmpty()) {
+
+            model.addAttribute("url","/");
+            model.addAttribute("msg","파일을 선택해주세요.");
+
+        } else {
+
+            //기본정보
+
+            member.setNb_profile_banner(nb_profile_banner_.getBytes());
+
+            model.addAttribute("url","/");
+            model.addAttribute("msg","수정되었습니다.");
+
+            memberService.findAllById(ids).forEach(member1 -> {
+                try {
+                    member1.setNb_profile_banner(nb_profile_banner_.getBytes());
+                    memberService.save(member1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            return "redirect:/user/@" + member.getNb_username();
 
         }
 

@@ -1,7 +1,11 @@
 package kr.needon.board.Model;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,6 +20,7 @@ import java.util.Date;
 @Setter
 @ToString
 @Table(name = "nb_member_roles")
+@DynamicUpdate
 public class MemberRole {
 
     @Id

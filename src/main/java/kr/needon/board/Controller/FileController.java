@@ -34,4 +34,19 @@ public class FileController {
         return new ResponseEntity<byte[]>(profile, headers, HttpStatus.OK);
     }
 
+    @GetMapping("/img/profile_banner")
+    public ResponseEntity<byte[]> ProfileBannerImg(@RequestParam("username") String username) { //프로필 사진
+
+        Member member = memberService.findById(username).get();
+        byte[] profile = member.getNb_profile_banner();
+
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+
+
+        System.out.println("사용자 ====> " + member.getNb_username());
+
+        return new ResponseEntity<byte[]>(profile, headers, HttpStatus.OK);
+    }
+
 }
